@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/okeyobia/devops-mlops-journey.git
     targetRevision: main
-    path: book-api/k8s
+    path: k8s
     directory:
       recurse: true
   destination:
