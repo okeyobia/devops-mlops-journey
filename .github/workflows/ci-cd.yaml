@@ -79,7 +79,8 @@ jobs:
           fi
           git commit -m "Update image tag to ${{ steps.meta.outputs.short_sha }} [skip ci]"
           echo "https://${PUSH_TOKEN}@github.com/${{ github.repository }} HEAD:main"
-          git push https://${PUSH_TOKEN}@github.com/okeyobia/${{ github.repository }} HEAD:main   
+          git push https://${{secrets.DOCKERHUB_USERNAME}}:${{ secrets.GH_PAT }}@github.com/okeyobia/${{ github.repository }}.git
+          
 
         #   git config --global user.email \"github-actions[bot]@users.noreply.github.com\"
         #   git config --global user.name \"github-actions[bot]\"
