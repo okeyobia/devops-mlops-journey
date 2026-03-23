@@ -68,7 +68,7 @@ jobs:
           sed -i "s|image: .*/book-api:.*|image: ${{ secrets.DOCKERHUB_USERNAME }}/book-api:${{ steps.meta.outputs.short_sha }}|" k8s/deploy.yaml
       - name: Commit manifest change
         env:
-         PUSH_TOKEN: ${{ secrets.GH_TOKEN }}
+         PUSH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
