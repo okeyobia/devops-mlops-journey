@@ -1,10 +1,45 @@
-# Python-generated files
+# Python artifacts
 __pycache__/
-*.py[oc]
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.log
+
+# Packaging
 build/
 dist/
 wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
+venv/
+env/
+
+# Environment/config
+.env
+.env.*
+*.env
+.python-version
+
+# Tooling caches
+.mypy_cache/
+.pytest_cache/
+.coverage
+*.coverage
+coverage.xml
+
+# Editor/OS noise
+.vscode/
+.idea/
+.DS_Store
+
+# Terraform local state
+.terraform/
+terraform/.terraform/
+.terraform*
+*.tfstate
+*.tfstate.*
+terraform.tfstate
+terraform.tfstate.*
