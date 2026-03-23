@@ -63,6 +63,15 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Update deployment.yaml with new image tag
+        run: |
+          sed -i "s|image: .*/book-api:.*|image: ${{ secrets.DOCKERHUB_USERNAME }}/book-api:${{ steps.meta.outputs.short_sha }}|" k8s/deploy.yaml
+          git config --global user.email \"github-actions[bot]@users.noreply.github.com\"
+          git config --global user.name \"github-actions[bot]\"
+          git add k8s/deploy.yaml
+          git commit -m \"ci: update image tag to ${{ steps.meta.outputs.short_sha }} [skip ci]\" || echo "No changes to commit."
+          git push
+
   terraform-apply:
     name: Terraform Apply (Minikube)
     needs: build-and-push

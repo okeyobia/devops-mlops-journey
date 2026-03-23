@@ -32,10 +32,7 @@ spec:
             requests:
               cpu: 250m
               memory: 256Mi
-      # Uncomment below to enable Argo CD Image Updater annotations
-      #annotations:
-      argocd-image-updater.argoproj.io/image-list: book-api=okeyobia/book-api
-      argocd-image-updater.argoproj.io/book-api.update-strategy: latest
+      # Remove Argo CD Image Updater annotations (now managed by CI/CD)
 ---
 apiVersion: v1
 kind: Service
