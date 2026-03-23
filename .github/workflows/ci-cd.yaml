@@ -62,3 +62,27 @@ jobs:
           # Use GitHub's cache to speed up Docker layer building on subsequent runs
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  terraform-apply:
+    name: Terraform Apply (Minikube)
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' # Prevent apply from running on PRs
+    defaults:
+      run:
+        working-directory: terraform
+    env:
+      TF_IN_AUTOMATION: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.4
+
+      - name: Terraform Init
+        run: terraform init -input=false
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -input=false
