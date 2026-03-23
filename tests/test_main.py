@@ -6,7 +6,7 @@ client = TestClient(app)
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {"status": "Online", "version": "1.0.0"}
+    assert response.json() == {"status": "Online",  "message": "Welcome to the DevOps Book API!", "version": "1.0.0"}
 
 def test_create_book():
     book_data = {"id": 1, "title": "DevOps Handbook", "author": "Gene Kim", "published_year": 2016}
