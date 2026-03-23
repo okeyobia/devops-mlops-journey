@@ -77,7 +77,7 @@ jobs:
            echo "No manifest updates to commit"
            exit 0
           fi
-          git commit -m "Update image tag to ${{ steps.meta.outputs.short_sha }} [skip ci]\" || echo "No changes to commit."
+          git commit -m "Update image tag to ${{ steps.meta.outputs.short_sha }} [skip ci]"
           git push https://${PUSH_TOKEN}@github.com/${{ github.repository }} HEAD:main   
 
         #   git config --global user.email \"github-actions[bot]@users.noreply.github.com\"
