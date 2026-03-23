@@ -84,6 +84,24 @@ To remove the deployment:
 kubectl delete -f k8s/deploy.yaml
 ```
 
+## GitOps with Argo CD
+The repo includes an Argo CD `Application` definition at [k8s/argocd/application.yaml](k8s/argocd/application.yaml). Update `repoURL` to match your fork/organization, then:
+
+```bash
+# Install Argo CD (official manifests) and expose the UI locally
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+
+# (Optional) grab the initial admin password
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+# Register the Book API application
+kubectl apply -f k8s/argocd/application.yaml
+```
+
+Argo CD will track the manifests under `book-api/k8s` and continuously sync them to the cluster. With `automated` sync enabled, any change merged to `main` triggers a new rollout without manual kubectl steps.
+
 ## Terraform + Minikube
 `terraform/main.tf` provisions a single-node Minikube cluster (Docker driver) and wires provider credentials for subsequent `kubectl` interactions.
 

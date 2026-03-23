@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: book-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/okeyobia/devops-mlops-journey.git
+    targetRevision: main
+    path: book-api/k8s
+    directory:
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: book-api
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
