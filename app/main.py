@@ -8,7 +8,7 @@ books_db = {}
 
 @app.get("/")
 def read_root():
-    return {"status": "Online",  "message": "Welcome to the DevOps Book API!", "version": "1.0.0"}
+    return {"status": "Online",  "message": "Welcome to the DevOps Book API!", "version": "1.0.1"}
 
 @app.post("/books/", response_model=Book)
 def create_book(book: Book):
