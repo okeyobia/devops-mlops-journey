@@ -8,18 +8,28 @@ This project implements a cloud-native Book API platform with a modern DevOps to
 
 ```mermaid
 graph TD
-    User[User/API Client]
-    User -->|HTTP Requests| API["Book API (FastAPI/Python)"]
-    API -->|Containerized| Docker[Docker]
-    Docker -->|Orchestrated| K8s[Kubernetes Cluster]
-    K8s -->|Managed by| ArgoCD[ArgoCD (GitOps)]
-    K8s -->|Provisioned by| Terraform[Terraform IaC]
-    API -->|Stores Artifacts| S3[S3/Artifact Storage]
-    Dev[Developer/CI Pipeline]
-    Dev -->|Push Code| Git[Git Repository]
-    Git -->|Triggers| CI[CI/CD Pipeline]
+    User["User/API Client"]
+    API["Book API (FastAPI/Python)"]
+    Docker["Docker"]
+    K8s["Kubernetes Cluster"]
+    ArgoCD["ArgoCD (GitOps)"]
+    Terraform["Terraform IaC"]
+    S3["S3/Artifact Storage"]
+    Dev["Developer/CI Pipeline"]
+    Git["Git Repository"]
+    CI["CI/CD Pipeline"]
+    GitOps["GitOps Repo"]
+
+    User -->|HTTP Requests| API
+    API -->|Containerized| Docker
+    Docker -->|Orchestrated| K8s
+    K8s -->|Managed by| ArgoCD
+    K8s -->|Provisioned by| Terraform
+    API -->|Stores Artifacts| S3
+    Dev -->|Push Code| Git
+    Git -->|Triggers| CI
     CI -->|Builds/Pushes| Docker
-    CI -->|Deploys Manifests| GitOps[GitOps Repo]
+    CI -->|Deploys Manifests| GitOps
     GitOps -->|Syncs| ArgoCD
     ArgoCD -->|Deploys| K8s
 ```
