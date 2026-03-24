@@ -9,7 +9,7 @@ This project implements a cloud-native Book API platform with a modern DevOps to
 ```mermaid
 graph TD
     User[User/API Client]
-    User -->|HTTP Requests| API[Book API (FastAPI/Python)]
+    User -->|HTTP Requests| API["Book API (FastAPI/Python)"]
     API -->|Containerized| Docker[Docker]
     Docker -->|Orchestrated| K8s[Kubernetes Cluster]
     K8s -->|Managed by| ArgoCD[ArgoCD (GitOps)]
