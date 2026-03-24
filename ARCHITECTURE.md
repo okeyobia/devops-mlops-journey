@@ -5,7 +5,7 @@
 This project implements a cloud-native Book API platform with a modern DevOps toolchain. The architecture leverages containerization, orchestration, infrastructure-as-code, and automated CI/CD for scalable, reliable, and maintainable deployments.
 
 ## Architecture Diagram
-![Architecture Diagram](./assets/architecture-diagram.png)
+[![Architecture Diagram](./assets/architecture-diagram.png)](https://github.com/okeyobia/devops-mlops-journey/actions)
 ```mermaid
 graph TD
     User["User/API Client"]
